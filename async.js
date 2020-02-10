@@ -13,11 +13,12 @@ async function getNumber(num){
 
 function getNumberPromise(num){
     numString = num.join(',');
-    let output = ['first'];
+    let output = [];
     axios.get(`http://numbersapi.com/${numString}?json&notfound=floor`)
     .then(function(data){ 
         for (item in data.data) {
-            output.push(data.data[item].text);
+            
+            document.getElementById('content').innerHTML+= (data.data[item].text+"<br>");
             console.log(output)
         }
         return output
@@ -28,5 +29,5 @@ function getNumberPromise(num){
 }
 
 window.onload = function(){
-    document.getElementById('content').innerHTML = getNumberPromise([2,7,10]);
+   getNumberPromise([2,7,10]);
 };
