@@ -3,11 +3,11 @@ async function getNumber(num){
     let resp = await axios.get(`http://numbersapi.com/${numString}?json&notfound=floor`)
     let output = '';
     for (item in resp.data) {
-        console.log(item);
+        
         output += resp.data[item].text + '<br>';
     }
-    // console.log(resp.data)
-    console.log(resp.data)
+    
+    
     return output
 }
 
@@ -28,6 +28,29 @@ function getNumberPromise(num){
     
 }
 
+function getText(data){
+    output = []
+    
+    for (num in data){
+        output.push(data[num].text + "<br>")
+        
+    }
+    
+    document.getElementById('content').innerHTML = output;
+    
+}
+
+
+function getNumberCallback(num){
+    numString = num.join(',');
+    
+    $.ajax({url: `http://numbersapi.com/${numString}?json&notfound=floor`,success: data => getText(data)})
+    // console.log("Output:", output )
+    // return output
+   
+}
+
 window.onload = function(){
-   getNumberPromise([2,7,10]);
+
+    getNumberCallback([1,4,7]);
 };
