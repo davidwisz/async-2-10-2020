@@ -24,6 +24,25 @@ async function initiatePokemon() {
         [spec1, spec2, spec3]
     );
 
+    let species = []
+    for (let i = 0; i < speciesPromise.length; i++) {
+        species.push(speciesPromise[i].data);
+        let text = ""
+        for (entry of speciesPromise[i].data.flavor_text_entries){
+            if (entry.language.name === "en"){
+                text = entry.flavor_text
+            }
+        }
+        if (i === 0)
+        console.log(`${pokemons[r1].name}: ${text}`)
+        if (i === 1)
+        console.log(`${pokemons[r2].name}: ${text}`)
+        if (i === 2)
+        console.log(`${pokemons[r3].name}: ${text}`)
+    }
+
+
+
     //console.log(pokemonPromise)
     
 }
